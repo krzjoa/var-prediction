@@ -20,7 +20,7 @@ OUTPUT = "output"
 
 
 # Loading data
-loaded = np.load("data/rnn_input.npz")
+loaded = np.load("data/rnn_input_s21.npz")
 X = loaded['X_train']
 
 X_test_holdout = loaded['X_test']
@@ -49,7 +49,8 @@ def rmse(y_true, y_pred):
 
 # Model
 model = Sequential()
-model.add(LSTM(30, activation='relu', input_shape=(11, 13)))
+model.add(LSTM(50, activation='relu', input_shape=(21, 13)))
+model.add(LSTM(30, activation='relu'))
 model.add(Dense(1, activation='linear'))
 model.compile(optimizer='adam', loss=rmse)
 
